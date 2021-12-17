@@ -1,7 +1,9 @@
-# SDL full screen invokating and Emscripten
+# SDL full screen and Emscripten
 
-For some reason, the way in which I invoke the SDL full screen mode in Emscripten behaves
-different if it comes because of a key press vs. a mouse click.  Here is a small example program which demonstrates the issue:
+For some reason, the way in which I invoke the SDL full screen mode in
+Emscripten behaves different if it comes because of a key press vs. a mouse
+click in the main loop.  Here is a small example program which demonstrates the
+issue:
 
 ```
 // Compile with:
@@ -85,7 +87,6 @@ int main(int argc, char *argv[])
         SDL_RenderPresent(renderer);
     }
 
-
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     SDL_Quit();
@@ -94,9 +95,25 @@ int main(int argc, char *argv[])
 }
 ```
 
+In this example, a red line is drawn from the upper left corner to the mouse
+position.  By pressing the "f" key, the screen changes from "window" mode to
+"desktop fullscreen" mode.  Clicking anywhere with the left mouse button is
+also supposed to do the very same thing.  But there is a catch, when clicking
+the mouse button to go to the "fullscreen" mode, the screen doesn't update
+correctly; instead the screen appearance stays the same, but the now the actual
+mouse cursor and where the line gets drawn are not the same, presuably because
+something in the SDL system thinks the screen has changed in resolution, but
+browser actually hasn't changed anything yet.  The actual screen change will
+then occur if you press some other key (say "x" or the space bar).  Or if you
+do something that would otherwise obscure part of the screen (try the browser
+scroll bar).  Transitioning back from full screen seems to work correctly, no
+matter if you left click, or if you press "f".
 
-This example can be tried over at:
+This example can be tried over at: 
+    [https://www.escriben.org/fullscreen/index_fullscreen.html](https://www.escriben.org/fullscreen/index_fullscreen.html)
 
-[https://www.escriben.org/fullscreen/index_fullscreen.html](https://www.escriben.org/fullscreen/index_fullscreen.html)
+...with the source files at:
 
+    [https://github.com/gregbuchholz/SDL_fullscreen_emscripten](https://github.com/gregbuchholz/SDL_fullscreen_emscripten)
 
+Thanks!
