@@ -116,4 +116,14 @@ This example can be tried over at: [https://www.escriben.org/fullscreen/index_fu
 
 [https://github.com/gregbuchholz/SDL_fullscreen_emscripten](https://github.com/gregbuchholz/SDL_fullscreen_emscripten)
 
+This behavior is present with the following version of Emscripten:
+
+    $ emcc -v
+    emcc (Emscripten gcc/clang-like replacement + linker emulating GNU ld) 3.0.0 (3fd52e107187b8a169bb04a02b9f982c8a075205)
+    clang version 14.0.0 (https://github.com/llvm/llvm-project 4348cd42c385e71b63e5da7e492172cff6a79d7b)
+    Target: wasm32-unknown-emscripten
+    Thread model: posix
+    InstalledDir: /home/greg/emsdk/upstream/bin
+
 Thanks!
+
