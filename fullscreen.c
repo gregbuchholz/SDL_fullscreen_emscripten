@@ -33,7 +33,14 @@ int main(int argc, char *argv[])
     SDL_Init(SDL_INIT_VIDEO);
     SDL_Window *window = SDL_CreateWindow("Testing fullscreen in Emscripten",
         SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 640, 480, 0);
+
+    /* Slightly different behavior between the accelerated and software renderers.
+     *   The actual full screen transistion still doesn't occur on the mouse click in 
+     *   Emscripten, but the "new" origin (0,0) for the indeterminate "full screen" mode 
+     *   is different between the two renderers.
+     */
     SDL_Renderer * renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+    //SDL_Renderer * renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_SOFTWARE);
 
     int mouse_x = 0, mouse_y = 0;
     bool full_screen_q = false;

@@ -107,14 +107,21 @@ thinks the screen has changed in resolution, but browser actually hasn't
 changed anything yet.  The actual screen change will then occur if you press
 some other key (say "x" or the space bar).  Or if you do something that would
 otherwise obscure part of the screen (try the browser scroll bar).
-Transitioning back from full screen seems to work correctly, no matter if you
-left click, or if you press "f".
 
 This example can be tried over at: [https://www.escriben.org/fullscreen/index_fullscreen.html](https://www.escriben.org/fullscreen/index_fullscreen.html)
 
 ...with the source files at:
 
 [https://github.com/gregbuchholz/SDL_fullscreen_emscripten](https://github.com/gregbuchholz/SDL_fullscreen_emscripten)
+
+...there is one interesting difference between the
+["accelerated"](https://wiki.libsdl.org/SDL_RendererFlags) and "software"
+renderers. The main behavior is the same, with the mouse click leaving the
+system in some sort of "indeterminate" full screen state, but with the software
+renderer, the new origin (from where the red line get drawn) remains in the
+same place as it was in the "windowed" mode, whereas with the accelerated
+renderer, the new origin is somewhere above the actual physical screen.  See
+the [screenshot]().
 
 This behavior is present with the following version of Emscripten:
 
@@ -124,6 +131,14 @@ This behavior is present with the following version of Emscripten:
     Target: wasm32-unknown-emscripten
     Thread model: posix
     InstalledDir: /home/greg/emsdk/upstream/bin
+
+...and seems consistent between the following browsers:
+
+* Firefox 95.0 on Lubuntu
+* Firefox 95.0.1 on Windows 10
+* Edge 96.0.1054.62 on Windows 10
+* Firefox 78.15.0 on Raspbian
+* Chromium 92.0.4515.92 on Raspbian 
 
 Thanks!
 
