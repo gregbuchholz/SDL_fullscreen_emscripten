@@ -1,9 +1,9 @@
 # SDL full screen and Emscripten
 
-For some reason, the way in which I invoke the SDL full screen mode in
-Emscripten behaves different if it comes because of a key press vs. a mouse
-click in the main loop.  Here is a small example program which demonstrates the
-issue:
+**This issue has been sufficiently resolved.  For whatever reason, the fullscreen change can't occur as part of the `mouseup` event.  See [Issue 158](https://github.com/emscripten-ports/SDL2/issues/158).  Change `SDL_MOUSEBUTTONUP` to `SDL_MOUSEBUTTONDOWN`** 
+
+For some reason, the way in which I invoke the SDL full screen mode in Emscripten behaves different if it comes because of a key press vs. a mouse
+click in the main loop.  Here is a small example program which demonstrates the issue:
 
 ```C
 // Compile with:
