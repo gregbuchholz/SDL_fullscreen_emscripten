@@ -58,6 +58,7 @@ int main(int argc, char *argv[])
                 switch (event.key.keysym.sym) {
                     case SDLK_f:
                         printf("'f' pressed\n");
+                        // This full screen toggle works as expected
                         full_screen_toggle(window, full_screen_q);
                         full_screen_q = !full_screen_q; 
                         break;
@@ -73,6 +74,7 @@ int main(int argc, char *argv[])
             case SDL_MOUSEBUTTONUP:
                 if (event.button.button == SDL_BUTTON_LEFT) {
                     printf("Left Mouse Button Up\n");
+                    // This full screen toggle from a mouse click is "odd"
                     full_screen_toggle(window, full_screen_q);
                     full_screen_q = !full_screen_q; 
                 }
