@@ -121,7 +121,7 @@ system in some sort of "indeterminate" full screen state, but with the software
 renderer, the new origin (from where the red line get drawn) remains in the
 same place as it was in the "windowed" mode, whereas with the accelerated
 renderer, the new origin is somewhere above the actual physical screen.  See
-the [screenshot]().
+the [screenshot](https://github.com/gregbuchholz/SDL_fullscreen_emscripten/blob/main/accelerated_anomaly.png).
 
 This behavior is present with the following version of Emscripten:
 
